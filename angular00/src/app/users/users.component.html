@@ -1,0 +1,23 @@
+<p>
+    users works!
+</p>
+<form #formUserAdd="ngForm" (submit)="onFormUserAddSubmit(formUserAdd, $event)" class="UserAdd">
+    <label for="">
+        Логин:
+        <input type="text" name="login" [(ngModel)]="userLogin" #inputLogin="ngModel" required
+               pattern="[a-zA-Z]{1,15}">
+        <div [hidden]="inputLogin.valid">Логин невалиден</div>
+    </label>
+    <label for="">
+        eMail:
+        <input type="text" name="email">
+    </label>
+
+    <button [disabled]="formUserAdd.invalid">Отправить</button>
+</form>
+
+<form [formGroup]="formUserEdit" class="UserEdit" (submit)="onFormUserEditSubmit(formUserEdit, $event)">
+    <input name="login" formControlName="login">
+    <input  name="email" formControlName="email">
+    <button [disabled]="formUserEdit.invalid">Отправить</button>
+</form>
