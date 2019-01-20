@@ -9,6 +9,8 @@ import {AboutComponent} from './about/about.component';
 import {Routes, RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UsersComponent} from './users/users.component';
+import { LogoComponent } from './logo/logo.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes = [{
     path: '',
@@ -34,7 +36,9 @@ const appRoutes = [{
         HomeComponent,
         PageComponent,
         AboutComponent,
-        UsersComponent
+        UsersComponent,
+        LogoComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,

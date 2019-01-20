@@ -1,0 +1,74 @@
+
+/*.grid {*/
+    /*display: grid;*/
+    /*grid-template-rows: 100px 100px;*/
+    /*grid-template-columns: repeat(3,1fr)*/
+/*}*/
+/*
+.grid{
+    display: flex;
+    justify-content : center;
+    align-items : flex-start;
+    flex-direction : row;
+    flex-wrap : wrap;
+}
+.grid-item{
+    display: inline-block;
+    --flex:1;
+}
+.logo{
+    width: 30%;
+    background-color: green;
+}
+.menu{
+    width: 70%;
+    background-color: yellow;
+}
+.col-left{
+    width: 20%;
+    background-color: antiquewhite;
+}
+.col-content{
+    width: 80%;
+    background-color: aqua;
+}
+*/
+
+
+.grid{
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-areas:
+        'lg lg lg lg mn mn mn mn mn mn'
+        'cl cl cc cc cc cc cc cc cc cc'
+        '.  ft ft ft ft ft ft ft ft .'
+    ;
+}
+
+.logo{
+    grid-area: lg;
+    height: 10vh;
+    background-color: green;
+}
+.menu{
+    grid-area: mn;
+    height: 10vh;
+    background-color: yellow;
+}
+.col-left{
+    grid-area: cl;
+    height: 80vh;
+    background-color: antiquewhite;
+}
+.col-content{
+    height: 80vh;
+    grid-area: cc;
+    background-color: aqua;
+    overflow: auto;
+}
+.footer{
+    height: 5vh;
+    grid-area: ft;
+    background-color: chartreuse;
+}
