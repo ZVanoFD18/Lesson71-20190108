@@ -1,1 +1,18 @@
-
+.menu-container{
+    display: flex;
+    flex-wrap: wrap;
+    --justify-content: center;
+    --justify-content: space-around;
+    height: 10vh;
+}
+.menu-item{
+    text-align:center;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: chartreuse;
+    margin: 0 0  0 5px;
+}
+.menu-item:hover{
+    color: red;
+}
