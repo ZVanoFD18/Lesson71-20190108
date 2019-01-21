@@ -1,9 +1,16 @@
-.menu-container{
+.container{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+
     display: flex;
     flex-wrap: wrap;
     --justify-content: center;
     --justify-content: space-around;
-    height: 10vh;
+    align-items: center;
 }
 .menu-item{
     text-align:center;

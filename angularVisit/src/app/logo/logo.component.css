@@ -1,3 +1,9 @@
+.container{
+    position: relative;
+    top:0;
+    bottom: 0;
+    overflow: auto;
+}
 .logo-container{
     /*
     background-color: antiquewhite;
