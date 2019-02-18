@@ -1,17 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vano
- * Date: 17.02.2019
- * Time: 22:35
- */
 
 namespace Helper;
 
 class Response
 {
-    static function go404($data){
-
+    static function send404($data = null){
+        header("HTTP/1.0 404 Not Found");
+        self::sendJson(array(
+            'success' => false,
+            'message' => 'Страница не найдена',
+            'data' => $data
+        ));
+        die();
     }
 
     static function sendJson(array  $data){
@@ -19,6 +19,6 @@ class Response
         header('Content-Type:application/json');
         header( 'Content-Length: ' . strlen($data));
         echo $data;
-        exit(0);
+        die();
     }
 }

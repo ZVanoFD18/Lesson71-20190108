@@ -23,5 +23,11 @@ class IndexController
             echo 'Test DB: FAIL<br>' . $e->getMessage();
         }
     }
+    public function addAction(){
 
+    }
+
+    public function editAction(){
+
+    }
 }

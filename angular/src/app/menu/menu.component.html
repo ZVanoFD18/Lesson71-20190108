@@ -3,4 +3,6 @@
   <a routerLink="/page" class="menu-item">Page</a>
   <!--<a routerLink="/about" class="menu-item">About</a>-->
   <a routerLink="/users" class="menu-item">Users</a>
+  <a *ngIf="us.isLogined"routerLink="/user/logout" class="menu-item">Logout</a>
+  <a *ngIf="!us.isLogined"routerLink="/user/login" class="menu-item">Login</a>
 </div>

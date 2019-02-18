@@ -6,6 +6,7 @@ require_once (APP_ROOT . '/app/Db.php');
 class App
 {
     public static function Run(){
+        header("Access-Control-Allow-Origin: *");
         self::_initLog();
         self::_initDb();
         $routes = Config::getRoutes();

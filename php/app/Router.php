@@ -1,4 +1,6 @@
 <?php
+require_once APP_ROOT.'/app/helpers/Response.php';
+
 use Helper\Response;
 
 class Router
@@ -10,7 +12,7 @@ class Router
             if ($uriPattern === $uri){
                 $isFound = true;
             }
-            if (!$isFound && preg_match($uriPattern, $uri)){
+            if (!$isFound && @preg_match($uriPattern, $uri)){
                 $isFound = true;
             }
             if (!$isFound ){
@@ -31,6 +33,8 @@ class Router
             $controllerObj = new $controller;
             $controllerObj->$action();
         }
-
+        Response::send404(array(
+            'uri' => $uri
+        ));
     }
 }

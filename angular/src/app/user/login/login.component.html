@@ -1,0 +1,14 @@
+<p>
+  login works!
+</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label for="">
+    <span>Логин</span>
+    <input formControlName="login">
+  </label>
+  <label for="">
+    <span>Пароль</span>
+    <input formControlName="pass" type="password">
+  </label>
+  <button [disabled]="form.invalid">Войти</button>
+</form>

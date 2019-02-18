@@ -22,7 +22,8 @@ class Config
             '/testRequest/' => 'common/index/testRequest',
             '/testdb/' => 'common/index/testdb',
             '/createdb/' => 'common/index/createdb',
-            '/users/list'  => 'users/index/list'
+            '/users/list'  => 'users/index/list',
+            '~/auth/login\?(.*)~'  => 'users/auth/login'
         );
     }
 
