@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 
-import {PageComponent} from "./page/page.component";
-import {HomeComponent} from "./home/home.component";
-import {AboutComponent} from "./about/about.component";
-import {UsersComponent} from "./users/users.component";
+import {PageComponent} from './page/page.component';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
 
-import {LoginComponent as UserLoginComponent} from "./user/login/login.component";
-import {LogoutComponent as UserLogoutComponent} from "./user/logout/logout.component";
+import {UsersComponent as AdminUsersComponent} from './admin/users/users.component';
+
+import {LoginComponent as UserLoginComponent} from './user/login/login.component';
+import {LogoutComponent as UserLogoutComponent} from './user/logout/logout.component';
+import {ProfileComponent as UserProfileComponent} from './user/profile/profile.component';
+import {ProfileGuard as UserProfileGuard} from './user/profile/profile.guard';
+import {AdminGuard} from './admin/admin.guard';
 
 const routes: Routes = [{
     path: '',
@@ -23,14 +27,19 @@ const routes: Routes = [{
     path: 'page',
     component: PageComponent
 }, {
-    path: 'users',
-    component: UsersComponent
+    path: 'admin/users',
+    component: AdminUsersComponent,
+    canActivate : [AdminGuard]
 }, {
     path: 'user/login',
     component: UserLoginComponent
 }, {
     path: 'user/logout',
     component: UserLogoutComponent
+}, {
+    path: 'user/profile',
+    component: UserProfileComponent,
+    canActivate : [UserProfileGuard]
 }];
 
 @NgModule({

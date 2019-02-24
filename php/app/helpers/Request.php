@@ -27,5 +27,24 @@ class Request
         $param = DateTime::createFromFormat($format, $param);
         return $param;
     }
+    static function getPostJson(&$isError, $defValue=null){
+        $result = null;
+        try{
+            $result = file_get_contents('php://input');
+            $result = json_decode($result);
+        } catch (\Error $e){
+            $isError = true;
+            Log::addError($e);
+            return $defValue;
+        }
+        return $result;
+    }
+
+    static function getCookie($name, $defVal=null){
+        if(!array_key_exists($name, $_COOKIE)){
+            return $defVal;
+        }
+        return $_COOKIE[$name];
+    }
 
 }

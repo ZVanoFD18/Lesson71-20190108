@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../user.service";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -10,21 +11,27 @@ import {UserService} from "../user.service";
 export class LoginComponent implements OnInit {
     public form: FormGroup;
 
-    constructor(private us: UserService) {
+    constructor(private us: UserService, private router: Router) {
         this.form = new FormGroup({
-            login : new FormControl('', Validators.required),
-            pass : new FormControl('', Validators.required)
+            login: new FormControl('', Validators.required),
+            pass: new FormControl('', Validators.required)
         });
     }
 
     ngOnInit() {
     }
-    onSubmit(){
-        alert('submit');
+
+    onSubmit() {
         this.us.login(
             this.form.get('login').value,
             this.form.get('pass').value
-        ).subscribe((isLogined) => {
+        ).subscribe((authRes) => {
+            if (authRes.message) {
+                alert(authRes.message);
+            }
+            if (authRes._isLogined) {
+                this.router.navigateByUrl('/user/profile');
+            }
         });
     }
 }

@@ -15,7 +15,7 @@ class Response
     }
 
     static function sendJson(array  $data){
-        $data = json_encode($data);
+        $data = json_encode($data, JSON_FORCE_OBJECT);
         header('Content-Type:application/json');
         header( 'Content-Length: ' . strlen($data));
         echo $data;

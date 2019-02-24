@@ -1,6 +1,6 @@
 .grid{
     display: grid;
-    grid-gap: 5px;
+    --grid-gap: 5px;/*Не катит т.к. появляется скроллинг*/
     grid-template-columns: repeat(10, 1fr);
     grid-template-areas:
         'lg lg lg lg mn mn mn mn mn mn'

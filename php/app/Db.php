@@ -39,9 +39,9 @@ class Db
      */
     static function checkDb($conn){
         $sql = 'SELECT version, status FROM sys$db_info';
-        $sth = self::$connection->prepare($sql);
-        $sth->execute();
-        $result = $sth->fetchAll(PDO::FETCH_OBJ);
+        $stmt = self::$connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         if (sizeof($result) !== 1){
             throw new Exception('Неверное количество записей в таблице "sys$db_info"');
         }

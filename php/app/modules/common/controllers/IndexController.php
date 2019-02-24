@@ -31,8 +31,8 @@ class IndexController
             $conn = Db::getConnection(false);
             $sql = file_get_contents(APP_ROOT . '/db-scripts/000000.sql');
             $conn->query($sql);
-            //$sth = db::getConnection()->prepare($sql);
-            //$sth->execute();
+            //$stmt = db::getConnection()->prepare($sql);
+            //$stmt->execute();
             echo 'Create DB: OK';
             echo '</br>' . $sql;
         } catch (Exception $e){

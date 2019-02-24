@@ -9,11 +9,11 @@ SELECT t.id, t.login, t.display_name
 from auth\$users t
 SQL;
         $conn = Db::getConnection();
-        $sth = $conn->prepare($sql);
-        if(!$sth->execute()){
+        $stmt = $conn->prepare($sql);
+        if(!$stmt->execute()){
             throw new Exception(__METHOD__ . '/Что-то не так.');
         }
-        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
     static function add(
@@ -44,8 +44,8 @@ SQL;
             );
 SQL;
         $conn = Db::getConnection();
-        $sth = $conn->prepare($sql);
-        if(!$sth->execute()){
+        $stmt = $conn->prepare($sql);
+        if(!$stmt->execute()){
             throw new Exception(__METHOD__ . '/Что-то не так.');
         }
 

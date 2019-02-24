@@ -23,7 +23,8 @@ class Config
             '/testdb/' => 'common/index/testdb',
             '/createdb/' => 'common/index/createdb',
             '/users/list'  => 'users/index/list',
-            '~/auth/login\?(.*)~'  => 'users/auth/login'
+            '~/auth/login\?(.*)~'  => 'users/auth/login',
+            '/auth/logout'  => 'users/auth/logout'
         );
     }
 
