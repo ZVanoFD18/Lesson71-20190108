@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+/*
+.containner{
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: blue;
+}
+*/
+
+form{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    width: 30rem;
+    border: 1px solid gray;
+    background-color: lightgray;
+}
+.title{
+    background-color: coral;
+    text-align: center;
+}
+.body{
+    padding: 0.5rem;
+}
+input {
+    width: 100%;
+}
+
+.fieldLabel{
+    display: block;
+}
+.required:before{
+    content :'*';
+    color: coral;
+}

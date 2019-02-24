@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
             if (authRes.message) {
                 alert(authRes.message);
             }
-            if (authRes._isLogined) {
+            if (authRes.isLogined) {
                 this.router.navigateByUrl('/user/profile');
             }
         });

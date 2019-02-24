@@ -7,8 +7,8 @@ import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 
 import {UsersComponent as AdminUsersComponent} from './admin/users/users.component';
-
 import {LoginComponent as UserLoginComponent} from './user/login/login.component';
+import {RegisterComponent as UserRegisterComponent} from './user/register/register.component';
 import {LogoutComponent as UserLogoutComponent} from './user/logout/logout.component';
 import {ProfileComponent as UserProfileComponent} from './user/profile/profile.component';
 import {ProfileGuard as UserProfileGuard} from './user/profile/profile.guard';
@@ -33,6 +33,9 @@ const routes: Routes = [{
 }, {
     path: 'user/login',
     component: UserLoginComponent
+}, {
+    path: 'user/register',
+    component: UserRegisterComponent
 }, {
     path: 'user/logout',
     component: UserLogoutComponent
