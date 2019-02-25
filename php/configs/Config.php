@@ -24,7 +24,8 @@ class Config
             '/createdb/' => 'common/index/createdb',
             '/users/list'  => 'users/index/list',
             '~/auth/login\?(.*)~'  => 'users/auth/login',
-            '/auth/logout'  => 'users/auth/logout'
+            '/auth/logout'  => 'users/auth/logout',
+            '/auth/register'  => 'users/auth/register'
         );
     }
 

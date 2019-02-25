@@ -1,5 +1,6 @@
 <?php
 require_once APP_ROOT . '/app/Db.php';
+require_once APP_ROOT . '/app/helpers/Log.php';
 
 class Auth
 {
@@ -52,6 +53,52 @@ SQL;
             \Helper\Log::addError($e, __METHOD__);
         }
         return $result;
+    }
+    static function register($params)
+    {
+        $result = false;
+        try {
+            $passHash = self::getHash($params->pass);
+            $sql = <<<SQL
+INSERT INTO auth\$users (
+  display_name
+  , login
+  , pass_hash
+  , e_mail
+  , phone
+  , change_question
+  , change_answer
+) VALUES (
+  :display_name
+  , :login
+  , :pass_hash
+  , :e_mail
+  , :phone
+  , :change_question
+  , :change_answer
+)
+SQL;
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare($sql);
+            $passHash = self::getHash($params->pass);
+            $stmt->bindValue('login', $params->login);
+            $stmt->bindValue('pass_hash', $passHash);
+            $stmt->bindValue('display_name', $params->display_name);
+            $stmt->bindValue('e_mail', null);
+            $stmt->bindValue('phone', null);
+            $stmt->bindValue('change_question', null);
+            $stmt->bindValue('change_answer', null);
+            $conn->beginTransaction();
+            if (!$stmt->execute()) {
+                throw new Exception(__METHOD__ . '/Что-то не так.');
+            }
+            $conn->commit();
+            $result = true;
+        } catch (Exception $e) {
+            \Helper\Log::addError($e, __METHOD__);
+        }
+        return $result;
+
     }
     public static function logout($sid){
         if (!self::_dropSession($sid)){

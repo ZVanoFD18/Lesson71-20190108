@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {UserService} from '../user.service';
+import {JsonRegister, RegisterParams, UserService} from '../user.service';
 
 @Component({
     selector: 'app-register',
@@ -14,19 +14,21 @@ export class RegisterComponent implements OnInit {
 
     constructor(private us: UserService, private router: Router) {
         this.form = new FormGroup({
-            login: new FormControl(null,  Validators.compose([
+            login: new FormControl(null, Validators.compose([
                 Validators.required,
-                Validators.pattern('[a-zA-Z]+[a-zA-Z\d]{3,14}')
+                Validators.pattern('[a-zA-Z]+[a-zA-Z0-9_]{3,14}')
             ])),
             displayName: new FormControl('', [
-                Validators.required,
-                Validators.pattern('[a-zA-Z]+[a-zA-Z\d]{3,14}')
+                Validators.required
             ]),
             pass: new FormGroup({
-                userPass: new FormControl('', Validators.required),
+                userPass: new FormControl('', [
+                    Validators.required,
+                    Validators.pattern('[a-zA-Z0-9_]{3,14}')
+                ]),
                 userPassConfirm: new FormControl('', [
                     Validators.required,
-                    this.passConfirmValidator.bind(this)
+                    this.validatorPassConfirm.bind(this)
                 ])
             })
         });
@@ -34,11 +36,11 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
     }
+
     // get myField() {
     //     return this.form.controls;
     // }
-
-    passConfirmValidator(passConfirm: FormControl) {
+    validatorPassConfirm(passConfirm: FormControl) {
         if (!this.form) {
             return null;
         }
@@ -52,5 +54,20 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         alert('submit');
+        const params = new RegisterParams();
+        params.login = this.form.controls.login.value;
+        params.pass = this.form.controls.pass.controls.userPass.value;
+        params.display_name = this.form.controls.displayName.value;
+        this.us.register(params).subscribe((result: JsonRegister) => {
+            if (!result.success) {
+                return alert(result.message || 'Неизвестная ошибка!');
+            }
+            alert('Регистрация успешно завершена');
+            this.router.navigateByUrl('/user/login');
+        });
+    }
+
+    onCancelClick() {
+        this.router.navigateByUrl('');
     }
 }

@@ -77,4 +77,25 @@ class AuthController
             )
         ));
     }
+
+    public function registerAction(){
+        \Helper\Response::checkCorsOrigin();
+        $params = \Helper\Request::getPostJson($isError);
+        if ($isError && !is_object($params)){
+            \Helper\Response::sendJson(array(
+                'success' => false,
+                'message' => 'Не переданы параметры'
+            ));
+        }
+        if (!Auth::register($params)) {
+            \Helper\Response::sendJson(array(
+                'success' => false,
+                'message' => 'Не удалось создать пользованеля'
+            ));
+        }
+        \Helper\Response::sendJson(array(
+            'success' => true,
+            'message' => 'Выполните подтверждение регистрации'
+        ));
+    }
 }

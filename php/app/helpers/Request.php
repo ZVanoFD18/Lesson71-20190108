@@ -27,6 +27,14 @@ class Request
         $param = DateTime::createFromFormat($format, $param);
         return $param;
     }
+
+    /**
+     * Пытается прочитать JSON из тела запроса.
+     * Если исключение, то возвпащает true через out-параметр $isError
+     * @param $isError
+     * @param null $defValue
+     * @return null|object
+     */
     static function getPostJson(&$isError, $defValue=null){
         $result = null;
         try{
@@ -40,6 +48,12 @@ class Request
         return $result;
     }
 
+    /**
+     * Возвращает Cookie с заданным именем.
+     * @param $name
+     * @param null $defVal
+     * @return null
+     */
     static function getCookie($name, $defVal=null){
         if(!array_key_exists($name, $_COOKIE)){
             return $defVal;

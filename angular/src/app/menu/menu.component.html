@@ -1,9 +1,9 @@
 <div class="container">
-  <a routerLink="/home" class="menu-item">Home</a>
-  <a routerLink="/page" class="menu-item">Page</a>
-  <a *ngIf="us.isAdmin" routerLink="/admin/users" class="menu-item">Admin Users</a>
-  <a *ngIf="us.isLogined" routerLink="/user/logout" class="menu-item">Logout</a>
-  <a *ngIf="us.isLogined" routerLink="/user/profile" class="menu-item">Profile</a>
-  <a *ngIf="!us.isLogined" routerLink="/user/login" class="menu-item">Login</a>
-  <a *ngIf="!us.isLogined" routerLink="/user/register" class="menu-item">Register</a>
+  <a routerLink="/home" class="menu-item">Домашняя</a>
+  <a routerLink="/page" class="menu-item">Новости</a>
+  <a *ngIf="us.isAdmin" routerLink="/admin/users" class="menu-item">Пользователи (Admin)</a>
+  <a *ngIf="us.isLogined" routerLink="/user/logout" class="menu-item">Выход</a>
+  <a *ngIf="!us.isLogined" routerLink="/user/login" class="menu-item">Вход</a>
+  <a *ngIf="!us.isLogined" routerLink="/user/register" class="menu-item">Регистрация</a>
+  <a *ngIf="us.isLogined" routerLink="/user/profile" class="menu-item">Профиль пользователя</a>
 </div>

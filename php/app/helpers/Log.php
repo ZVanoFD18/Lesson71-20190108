@@ -11,7 +11,7 @@ class Log
      */
     protected static $_loggers = array();
 
-    public static function addError(\Error $e, $data = null)
+    public static function addError(\Exception $e, $data = null)
     {
         // @TODO: Реализовать логирование ошибок
     }

@@ -6,7 +6,7 @@
                 <label for="login">
                     <span class="fieldLabel required">Логин:</span>
                     <input formControlName="login" id="login" #login>
-                    <div *ngIf="form.controls.login.errors">
+                    <div *ngIf="form.controls.login.errors"  class="errors">
 <!--                        <div ngFor="let err on ngFor; let i = index">
                             <div>"{{i}}"</div>
                         </div>
@@ -19,21 +19,33 @@
                 <label for="displayName">
                     <span class="fieldLabel required">Отображаемое имя:</span>
                     <input formControlName="displayName" id="displayName">
+                    <div *ngIf="form.controls.displayName.errors" class="errors">
+                        <div *ngIf="form.controls.displayName.errors.required">Поле обязательно для ввода</div>
+                    </div>
                 </label>
             </div>
             <div class="form-group" formGroupName="pass">
                 <label for="">
                     <span class="fieldLabel required">Пароль:</span>
                     <input formControlName="userPass">
+                    <div *ngIf="form.controls.pass.controls.userPass.errors" class="errors">
+                        <div *ngIf="form.controls.pass.controls.userPass.errors.required">Поле обязательно для ввода</div>
+                        <div *ngIf="form.controls.pass.controls.userPass.errors.pattern">Поле не соответствует требованиям безопасности</div>
+                    </div>
                 </label>
                 <label for="">
                     <span class="fieldLabel required">Подтверждение пароля:</span>
                     <input formControlName="userPassConfirm">
+                    <div *ngIf="form.controls.pass.controls.userPassConfirm.errors" class="errors">
+                        <div *ngIf="form.controls.pass.controls.userPassConfirm.errors.required">Поле обязательно для ввода</div>
+                        <div *ngIf="form.controls.pass.controls.userPassConfirm.errors.passConfirmNotSame">Значение не совпадает с полем "Пароль"</div>
+                    </div>
                 </label>
             </div>
         </div>
-        <div class="panel">
-            <button [disabled]="isValid">Сохранить</button>
+        <div class="panel buttons">
+            <button [disabled]="form.invalid">Сохранить</button>
+            <button (click)="onCancelClick()">Отмена</button>
         </div>
     </form>
 </div>

@@ -74,6 +74,19 @@ export class UserService {
         });
         return ee;
     }
+
+    public register(params: RegisterParams) {
+        const uri = environment.apiUrl + '/auth/register';
+        const ee = new EventEmitter<any>();
+        const observableLogin = this.httpClient.post(uri, params);
+        observableLogin.subscribe((json: JsonRegister) => {
+            if (json.success) {
+                // Что-то делаем
+            }
+            ee.emit(json);
+        });
+        return ee;
+    }
 }
 
 class JsonLogin {
@@ -91,6 +104,16 @@ class JsonLoginData {
 }
 
 class JsonLogout {
+    public success: boolean;
+    public message: string;
+}
+
+export class RegisterParams {
+    public login: string;
+    public pass: string;
+    public display_name: string;
+}
+export class JsonRegister {
     public success: boolean;
     public message: string;
 }
